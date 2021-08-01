@@ -1944,10 +1944,10 @@ get-stream@^6.0.0:
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-6.0.1.tgz#a262d8eef67aced57c2852ad6167526a43cbf7b7"
   integrity sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg==
 
-git-commit-msg-linter@^3.2.6:
-  version "3.2.6"
-  resolved "https://registry.yarnpkg.com/git-commit-msg-linter/-/git-commit-msg-linter-3.2.6.tgz#e2894fc21d3b69635433e1c5b161e25e6b6068d1"
-  integrity sha512-u9LolsJjHFLm12FWCnZhrhMJmHzDBP4Uz31F+OLpTSGvZW9ms6/+0hscJA9nisFU0HK0tJJ991ISomc5ajoO6A==
+git-commit-msg-linter@^2.3.11:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/git-commit-msg-linter/-/git-commit-msg-linter-2.7.0.tgz#6ae69e4640a59d13dbc3922ef6de1de5ffbdc418"
+  integrity sha512-gpkcxIHzPWEkv15ni1NnstL0+BgwnNUyoKIzifSojqrnoflcsVCwd0eUw/d3Yq97LpejqmMxlhPG3IBlPoVfKQ==
   dependencies:
     chalk "^2.4.2"
     did-you-mean "^0.0.1"
