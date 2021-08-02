@@ -1,5 +1,8 @@
-export class SignUpController {
-  handle (httpRequest: any): any {
+import { HttpRequest, HttpResponse } from '../interfaces/http'
+import { Controller } from '../interfaces/controller'
+
+export class SignUpController implements Controller {
+  handle (httpRequest: HttpRequest): HttpResponse {
     const data = httpRequest.body
 
     if (!data.name) {
