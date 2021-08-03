@@ -73,7 +73,7 @@ describe('SignUp Controller ', () => {
     expect(httpResponse.body).toEqual(new MissingParamError('password'))
   })
 
-  it('Should return 400 if NO PASSWORD is provided', () => {
+  it('Should return 400 if NO PASSWORD CONFIRMATION is provided', () => {
     const { sut } = makeSut()
     const httpRequest = {
       body: {
@@ -88,6 +88,22 @@ describe('SignUp Controller ', () => {
     expect(httpResponse.body).toEqual(new MissingParamError('passwordConfirmation'))
   })
 
+  it('Should return 400 if password and pass confirmation does not match', () => {
+    const { sut } = makeSut()
+    const httpRequest = {
+      body: {
+        name: 'name_test',
+        email: 'test_email@mail.com',
+        password: 'test_password',
+        passwordConfirmation: 'invalid_pass_confirmation'
+      }
+    }
+
+    const httpResponse = sut.handle(httpRequest)
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.body).toEqual(new InvalidParamError('passwordConfirmation'))
+  })
+
   it('Should return 400 if AN INVALID EMAIL is provided', () => {
     const { sut, emailValidatorStub } = makeSut()
     jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false)
@@ -96,7 +112,7 @@ describe('SignUp Controller ', () => {
         name: 'name_test',
         email: 'test_invalid_email@mail.com',
         password: 'test_password',
-        passwordConfirmation: 'test_confirmation'
+        passwordConfirmation: 'test_password'
       }
     }
 
@@ -113,7 +129,7 @@ describe('SignUp Controller ', () => {
         name: 'name_test',
         email: 'test_email@mail.com',
         password: 'test_password',
-        passwordConfirmation: 'test_confirmation'
+        passwordConfirmation: 'test_password'
       }
     }
 
@@ -132,7 +148,7 @@ describe('SignUp Controller ', () => {
         name: 'name_test',
         email: 'test_email@mail.com',
         password: 'test_password',
-        passwordConfirmation: 'test_confirmation'
+        passwordConfirmation: 'test_password'
       }
     }
 
