@@ -2,11 +2,24 @@ import { SignUpController } from './SignUpController'
 import { MissingParamError } from './Errors/MissingParamError'
 import { InvalidParamError } from './Errors/InvalidParamError'
 import { EmailValidator } from '../interfaces/EmailValidator'
+import { ServerError } from '../controllers/Errors/ServerError'
 
 interface MakeSut {
   sut: SignUpController
   emailValidatorStub: EmailValidator
 }
+
+// interface EmailValidatorError {
+//   isValid (email: string): Error
+// }
+
+// const makeEmailValidatorStubError = (): void => {
+//   class EmailValidatorStub implements EmailValidatorError {
+//     isValid (email: string): Error {
+//       throw new Error()
+//     }
+//   }
+// }
 
 const makeSut = (): MakeSut => {
   class EmailValidatorStub implements EmailValidator {
@@ -115,5 +128,28 @@ describe('SignUp Controller ', () => {
 
     sut.handle(httpRequest)
     expect(isValidSpy).toHaveBeenCalledWith('test_email@mail.com')
+  })
+
+  it('Should return 500 if EmailValidator throws', () => {
+    class EmailValidatorStub implements EmailValidator {
+      isValid (email: string): boolean {
+        throw new Error()
+      }
+    }
+    const emailValidatorStub = new EmailValidatorStub()
+    const sut = new SignUpController(emailValidatorStub)
+    jest.spyOn(emailValidatorStub, 'isValid')
+    const httpRequest = {
+      body: {
+        name: 'name_test',
+        email: 'test_email@mail.com',
+        password: 'test_password',
+        passwordConfirmation: 'test_confirmation'
+      }
+    }
+
+    const httpResponse = sut.handle(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new ServerError())
   })
 })
