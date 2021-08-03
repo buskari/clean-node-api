@@ -1,8 +1,6 @@
 import { SignUpController } from './SignUpController'
-import { MissingParamError } from './Errors/MissingParamError'
-import { InvalidParamError } from './Errors/InvalidParamError'
+import { MissingParamError, InvalidParamError, ServerError } from './Errors'
 import { EmailValidator } from '../interfaces/EmailValidator'
-import { ServerError } from '../controllers/Errors/ServerError'
 
 interface MakeSut {
   sut: SignUpController
