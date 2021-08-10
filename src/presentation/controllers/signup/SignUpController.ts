@@ -5,8 +5,8 @@ import {
   EmailValidator,
   AddAccount
 } from './signup-interfaces'
-import { badRequest, serverError, success } from '../helpers/http-helper'
-import { MissingParamError, InvalidParamError } from '../errors'
+import { badRequest, serverError, success } from '../../helpers/http-helper'
+import { MissingParamError, InvalidParamError } from '../../errors'
 
 export class SignUpController implements Controller {
   constructor (
@@ -42,6 +42,7 @@ export class SignUpController implements Controller {
 
       return new Promise(resolve => resolve(success(account)))
     } catch (error) {
+      console.error(error)
       return serverError()
     }
   }
