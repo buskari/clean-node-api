@@ -1,4 +1,4 @@
-import { Encrypter } from './../../interfaces/EncrypterInterface'
+import { Encrypter } from './DbAddAccountInterfaces'
 import { DbAddAccount } from './DbAddAccount'
 
 interface SutInterface {
